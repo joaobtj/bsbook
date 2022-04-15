@@ -30,8 +30,10 @@ jobs:
           key: bookdown-${{ hashFiles('**/*Rmd') }}
           restore-keys: bookdown-
 
-      - name: Build site
+      - name: Install packages
         run: Rscript -e 'install.packages(c("downlite","xml2"))'
+        
+      - name: Build site
         run: Rscript -e 'bookdown::render_book("index.Rmd", quiet = TRUE)'
 
       - name: Deploy to GitHub pages 🚀
